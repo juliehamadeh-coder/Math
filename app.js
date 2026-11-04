@@ -1,11 +1,11 @@
 const suspects = [
-  { name: "Dr. Hollow", role: "Science teacher", initials: "DH" },
-  { name: "Ms. Ivy", role: "Librarian", initials: "MI" },
-  { name: "Coach Bramble", role: "Gym teacher", initials: "CB" },
-  { name: "Principal Vale", role: "Principal", initials: "PV" },
-  { name: "Chef Rowan", role: "Cafeteria chef", initials: "CR" },
-  { name: "Juno Bell", role: "Student reporter", initials: "JB" },
-  { name: "Rory Fox", role: "Student helper", initials: "RF" }
+  { name: "Dr. Hollow", role: "Science teacher", initials: "DH", outfit: "White lab coat" },
+  { name: "Ms. Ivy", role: "Librarian", initials: "MI", outfit: "Green cardigan" },
+  { name: "Coach Bramble", role: "Gym teacher", initials: "CB", outfit: "Red tracksuit" },
+  { name: "Principal Vale", role: "Principal", initials: "PV", outfit: "Navy suit" },
+  { name: "Chef Rowan", role: "Cafeteria chef", initials: "CR", outfit: "Striped apron" },
+  { name: "Juno Bell", role: "Student reporter", initials: "JB", outfit: "Yellow raincoat" },
+  { name: "Rory Fox", role: "Student helper", initials: "RF", outfit: "Black hoodie" }
 ];
 
 const clues = [
@@ -18,6 +18,11 @@ const clues = [
     suspect: 0,
     title: "The lab log tells the truth",
     clue: "The answer opens locker 7. Inside is Dr. Hollow’s signed lab log, proving he was supervising an experiment at 12:07 PM.",
+    hints: [
+      { label: "WHAT HE WORE", text: "A white lab coat with a bright purple chemical stain." },
+      { label: "WHERE HE WAS", text: "Inside Science Lab B, two floors above the staff room." },
+      { label: "WHO CONFIRMED IT", text: "Six students saw him begin a bubbling experiment at 12:00." }
+    ],
     hint: "Start by undoing the +5. Subtract 5 from both sides. What is 26 − 5? Then divide both sides by 3."
   },
   {
@@ -29,6 +34,11 @@ const clues = [
     suspect: 1,
     title: "A timestamp in the stacks",
     clue: "Shelf camera 8 shows Ms. Ivy helping a student across campus when the lunch disappeared.",
+    hints: [
+      { label: "WHAT SHE WORE", text: "A green cardigan and a silver owl brooch." },
+      { label: "WHERE SHE WAS", text: "At the library return desk on the opposite side of school." },
+      { label: "WHAT PROVES IT", text: "Her card scanned twelve returned books from 12:03 to 12:11." }
+    ],
     hint: "Undo the multiplication first: divide both sides by 4. You’ll get y − 2 = 6. What must you add to both sides?"
   },
   {
@@ -40,6 +50,11 @@ const clues = [
     suspect: 2,
     title: "The whistle was heard",
     clue: "Page 7 holds the track attendance sheet. Twenty witnesses place Coach Bramble outside during lunch.",
+    hints: [
+      { label: "WHAT HE WORE", text: "A red tracksuit and muddy white running shoes." },
+      { label: "WHERE HE WAS", text: "On the outdoor track, timing the relay team." },
+      { label: "WHAT PROVES IT", text: "His stopwatch recorded a lap at exactly 12:07." }
+    ],
     hint: "Collect the variable terms: subtract 2n from both sides. Then add 7 to both sides. You should reach 3n = 21."
   },
   {
@@ -51,6 +66,11 @@ const clues = [
     suspect: 3,
     title: "The office call",
     clue: "Extension 15 has a recorded call lasting through 12:07 PM. Principal Vale never left the office.",
+    hints: [
+      { label: "WHAT SHE WORE", text: "A navy suit with a gold school pin." },
+      { label: "WHERE SHE WAS", text: "In the principal’s office behind a locked glass door." },
+      { label: "WHAT PROVES IT", text: "A parent call lasted from 11:58 until 12:14." }
+    ],
     hint: "Remove the +4 by subtracting 4 from both sides. Once m ÷ 3 = 5, multiply both sides by 3."
   },
   {
@@ -62,6 +82,11 @@ const clues = [
     suspect: 4,
     title: "A delivery across town",
     clue: "Receipt 4 shows Chef Rowan accepting a food delivery at the loading dock, far from the staff room.",
+    hints: [
+      { label: "WHAT HE WORE", text: "A striped apron, blue gloves, and a tall paper hat." },
+      { label: "WHERE HE WAS", text: "At the loading dock behind the cafeteria." },
+      { label: "WHAT PROVES IT", text: "The driver’s receipt and dock camera are both stamped 12:07." }
+    ],
     hint: "Divide both sides by 2 first. Then 3p + 1 = 13. Subtract 1, and divide the result by 3."
   },
   {
@@ -73,6 +98,11 @@ const clues = [
     suspect: 5,
     title: "The photograph doesn’t blink",
     clue: "Photo 12 is timestamped 12:07 PM. Juno Bell was interviewing the soccer team. Only one suspect remains.",
+    hints: [
+      { label: "WHAT SHE WORE", text: "A yellow raincoat with a press badge on the pocket." },
+      { label: "WHERE SHE WAS", text: "On the soccer field recording a team interview." },
+      { label: "WHAT PROVES IT", text: "Photo 12 shows Juno with the entire team at 12:07." }
+    ],
     hint: "Subtract 2q from both sides, leaving 7 = q − 5. What should you add to both sides to isolate q?"
   }
 ];
@@ -94,6 +124,7 @@ function renderSuspects() {
       <div class="portrait">${suspect.initials}</div>
       <strong>${suspect.name}</strong>
       <small>${suspect.role}</small>
+      <small class="outfit">${suspect.outfit}</small>
       <span class="status">CLEARED</span>
     </article>
   `).join("");
@@ -118,13 +149,13 @@ function renderClue() {
   $("#work-steps").value = "";
   $("#hint-box").hidden = true;
   reveal.hidden = true;
+  $("#excluded").hidden = true;
+  $("#next-btn").hidden = true;
   answer.focus();
 }
 
 function correctAnswer() {
   const clue = clues[current];
-  cleared.add(clue.suspect);
-  renderSuspects();
   feedback.textContent = `Correct. ${clue.variable} = ${clue.answer}. The evidence fits.`;
   feedback.className = "feedback success";
   answer.disabled = true;
@@ -132,6 +163,10 @@ function correctAnswer() {
   scaffold.hidden = true;
   $("#clue-title").textContent = clue.title;
   $("#clue-text").textContent = clue.clue;
+  $("#hint-evidence").innerHTML = clue.hints.map((hint) => `
+    <article class="mini-clue"><span>${hint.label}</span><p>${hint.text}</p></article>
+  `).join("");
+  $("#exclude-btn").textContent = `EXCLUDE ${suspects[clue.suspect].name.toUpperCase()}`;
   $("#excluded").textContent = `SUSPECT EXCLUDED: ${suspects[clue.suspect].name.toUpperCase()}`;
   $("#next-btn").innerHTML = current === clues.length - 1 ? "IDENTIFY THE CULPRIT <span>→</span>" : "FOLLOW THE NEXT LEAD <span>→</span>";
   reveal.hidden = false;
@@ -156,6 +191,15 @@ $("#answer-form").addEventListener("submit", (event) => {
   $("#work-steps").focus();
 });
 
+$("#exclude-btn").addEventListener("click", () => {
+  const clue = clues[current];
+  cleared.add(clue.suspect);
+  renderSuspects();
+  $("#decision-box").hidden = true;
+  $("#excluded").hidden = false;
+  $("#next-btn").hidden = false;
+});
+
 $("#get-help").addEventListener("click", () => {
   const steps = $("#work-steps").value.trim();
   const hintBox = $("#hint-box");
@@ -175,6 +219,7 @@ $("#next-btn").addEventListener("click", () => {
   if (current < clues.length - 1) {
     current += 1;
     renderClue();
+    $("#decision-box").hidden = false;
     $("#evidence-card").scrollIntoView({ behavior: "smooth", block: "start" });
   } else {
     $("#investigation").hidden = true;
@@ -187,6 +232,7 @@ $("#begin-btn").addEventListener("click", () => $("#investigation").scrollIntoVi
 $("#restart-btn").addEventListener("click", () => {
   current = 0;
   cleared = new Set();
+  $("#decision-box").hidden = false;
   renderSuspects();
   renderClue();
   $("#investigation").hidden = false;

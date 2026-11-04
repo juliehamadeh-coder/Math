@@ -107,8 +107,19 @@ textarea { width:100%; resize:vertical; margin-bottom:10px; font-family:Georgia,
 .verified { color:#4f714d; font-size:.6rem; font-weight:bold; letter-spacing:.12em; }
 .clue-reveal h3 { font-family:var(--type); font-size:1.5rem; font-weight:400; margin:10px 0 5px; }
 .clue-reveal p { font-family:Georgia,serif; line-height:1.55; color:#51554d; }
+.hint-evidence { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin:18px 0; }
+.mini-clue { border:1px solid #aaa083; background:#eee6d2; padding:13px; min-height:105px; }
+.mini-clue span { display:block; color:var(--red); font-size:.52rem; font-weight:bold; letter-spacing:.13em; margin-bottom:8px; }
+.mini-clue p { margin:0; font-size:.82rem; line-height:1.4; }
+.decision-box { border:1px dashed #8d8061; padding:17px; margin:16px 0; background:rgba(255,255,255,.2); }
+.decision-box > span { color:var(--red); font-size:.54rem; font-weight:bold; letter-spacing:.14em; }
+.decision-box p { margin:7px 0 13px; }
+.exclude-btn { border:2px solid var(--red); background:transparent; color:var(--red); padding:10px 14px; font-size:.63rem; font-weight:bold; letter-spacing:.08em; }
+.exclude-btn:hover { background:var(--red); color:var(--paper); }
 .excluded { display:inline-block; border:2px solid var(--red); color:var(--red); padding:7px 10px; margin:8px 0 20px; font-size:.66rem; font-weight:bold; transform:rotate(-1deg); }
+.excluded[hidden] { display:none; }
 .next-btn { display:block; }
+.next-btn[hidden] { display:none; }
 
 .finale { min-height:90vh; padding:100px 22px; text-align:center; background:#101714; position:relative; }
 .finale h2 { font-family:var(--type); font-size:clamp(2rem,5vw,4rem); font-weight:400; margin:15px 0 30px; }
@@ -137,6 +148,7 @@ footer { min-height:70px; padding:20px 5vw; display:flex; justify-content:space-
   .progress-track { max-width:100px; }
   .culprit-card { flex-direction:column; }
   .culprit-portrait { min-height:120px; }
+  .hint-evidence { grid-template-columns:1fr; }
   footer { gap:20px; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior:auto !important; animation:none !important; transition:none !important; } }
