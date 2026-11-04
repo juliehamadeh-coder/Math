@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111715" />
+    <title>The Case of the Missing Lunch</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="fog fog-one"></div>
+    <div class="fog fog-two"></div>
+    <header class="case-header">
+      <a class="agency" href="#case-file" aria-label="Midnight Math Bureau home">
+        <span class="agency-mark" aria-hidden="true">M</span>
+        <span>MIDNIGHT MATH BUREAU<small>CASE DIVISION · ROOM 13</small></span>
+      </a>
+      <div class="case-number">CASE FILE <strong>#031</strong></div>
+    </header>
+
+    <main id="case-file">
+      <section class="hero">
+        <div class="eyebrow"><span></span> CLASSIFIED · STUDENT INVESTIGATORS ONLY</div>
+        <h1>The Case of the<br /><em>Missing Lunch</em></h1>
+        <p class="briefing">At 12:07 PM, Ms. Marlowe's legendary lunch vanished from the staff room. Seven suspects. Six equations. One hungry culprit.</p>
+        <button class="primary-btn" id="begin-btn">OPEN THE CASE FILE <span>→</span></button>
+        <div class="hero-note">Solve carefully. The numbers never lie.</div>
+      </section>
+
+      <section class="desk" id="investigation" aria-label="Investigation board">
+        <aside class="suspects-panel">
+          <div class="section-label">SUSPECT BOARD</div>
+          <h2>Persons of interest</h2>
+          <p>Crack a clue to clear a suspect. The last portrait standing belongs to our lunch thief.</p>
+          <div class="suspect-grid" id="suspect-grid"></div>
+        </aside>
+
+        <section class="case-panel">
+          <div class="progress-row">
+            <div>
+              <span class="section-label">EVIDENCE TRAIL</span>
+              <strong id="progress-label">CLUE 1 OF 6</strong>
+            </div>
+            <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+          </div>
+
+          <article class="evidence-card" id="evidence-card">
+            <div class="paperclip" aria-hidden="true"></div>
+            <div class="stamp">EVIDENCE<br />01</div>
+            <div class="location" id="location">FOUND: STAFF ROOM DOOR</div>
+            <p class="scene" id="scene"></p>
+            <div class="equation-wrap">
+              <span>RECOVERED EQUATION</span>
+              <div class="equation" id="equation"></div>
+            </div>
+            <form id="answer-form" novalidate>
+              <label for="answer">YOUR SOLUTION</label>
+              <div class="answer-row">
+                <input id="answer" name="answer" inputmode="decimal" autocomplete="off" placeholder="x = ?" aria-describedby="answer-feedback" />
+                <button type="submit" class="check-btn">CHECK EVIDENCE</button>
+              </div>
+              <div class="feedback" id="answer-feedback" aria-live="polite"></div>
+            </form>
+
+            <section class="scaffold" id="scaffold" hidden>
+              <div class="scaffold-heading"><span>✎</span><div><strong>SHOW YOUR DETECTIVE WORK</strong><small>A good investigator leaves a clear trail.</small></div></div>
+              <label for="work-steps">Write the steps you tried. What did you do to both sides?</label>
+              <textarea id="work-steps" rows="3" placeholder="First, I…"></textarea>
+              <button class="outline-btn" id="get-help" type="button">REVIEW MY STEPS</button>
+              <div class="hint-box" id="hint-box" hidden></div>
+            </section>
+
+            <section class="clue-reveal" id="clue-reveal" hidden>
+              <span class="verified">✓ EQUATION VERIFIED</span>
+              <h3 id="clue-title"></h3>
+              <p id="clue-text"></p>
+              <div class="excluded" id="excluded"></div>
+              <button class="primary-btn next-btn" id="next-btn">FOLLOW THE NEXT LEAD <span>→</span></button>
+            </section>
+          </article>
+        </section>
+      </section>
+
+      <section class="finale" id="finale" hidden>
+        <div class="final-stamp">CASE CLOSED</div>
+        <p class="section-label">CULPRIT IDENTIFIED</p>
+        <h2>The last suspect standing is...</h2>
+        <div class="culprit-card">
+          <div class="culprit-portrait">RF</div>
+          <div><span>THE LUNCH THIEF</span><h3>Rory Fox</h3><p>Rory confesses: the identical lunch bags were switched by mistake. The sandwich is returned, an apology is written, and justice is served—with a side of algebra.</p></div>
+        </div>
+        <button class="outline-btn light" id="restart-btn">REOPEN CASE</button>
+      </section>
+    </main>
+
+    <footer><span>MIDNIGHT MATH BUREAU</span><span>CONFIDENTIAL EDUCATIONAL FILE · DO NOT LEAVE UNATTENDED</span></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
