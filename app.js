@@ -1,11 +1,11 @@
 const suspects = [
-  { name: "Dr. Hollow", role: "Science teacher", initials: "DH", outfit: "White lab coat" },
-  { name: "Ms. Ivy", role: "Librarian", initials: "MI", outfit: "Green cardigan" },
-  { name: "Coach Bramble", role: "Gym teacher", initials: "CB", outfit: "Red tracksuit" },
-  { name: "Principal Vale", role: "Principal", initials: "PV", outfit: "Navy suit" },
-  { name: "Chef Rowan", role: "Cafeteria chef", initials: "CR", outfit: "Striped apron" },
-  { name: "Juno Bell", role: "Student reporter", initials: "JB", outfit: "Yellow raincoat" },
-  { name: "Rory Fox", role: "Student helper", initials: "RF", outfit: "Black hoodie" }
+  { name: "Dr. Hollow", role: "Science teacher", initials: "DH", traits: ["Wears glasses", "White coat", "Usually on second floor"] },
+  { name: "Ms. Ivy", role: "Librarian", initials: "MI", traits: ["Wears glasses", "Green cardigan", "Works in east wing"] },
+  { name: "Coach Bramble", role: "Gym teacher", initials: "CB", traits: ["White shoes", "Red tracksuit", "Often outdoors"] },
+  { name: "Principal Vale", role: "Principal", initials: "PV", traits: ["Wears a badge", "Navy jacket", "Works in main office"] },
+  { name: "Chef Rowan", role: "Cafeteria chef", initials: "CR", traits: ["White shoes", "Striped apron", "Works in west hall"] },
+  { name: "Juno Bell", role: "Student reporter", initials: "JB", traits: ["Wears a badge", "Yellow jacket", "Often outdoors"] },
+  { name: "Rory Fox", role: "Student helper", initials: "RF", traits: ["Wears glasses", "Black hoodie", "Works in west hall"] }
 ];
 
 const clues = [
@@ -17,11 +17,11 @@ const clues = [
     answer: 7,
     suspect: 0,
     title: "The lab log tells the truth",
-    clue: "The answer opens locker 7. Inside is Dr. Hollow’s signed lab log, proving he was supervising an experiment at 12:07 PM.",
+    clue: "Locker 7 contains an alibi. Compare every detail with the suspect profiles—one clue alone is not enough.",
     hints: [
-      { label: "WHAT HE WORE", text: "A white lab coat with a bright purple chemical stain." },
-      { label: "WHERE HE WAS", text: "Inside Science Lab B, two floors above the staff room." },
-      { label: "WHO CONFIRMED IT", text: "Six students saw him begin a bubbling experiment at 12:00." }
+      { label: "CLOTHING", text: "The person wore a white coat and glasses." },
+      { label: "LOCATION", text: "They were in Science Lab B on the second floor." },
+      { label: "CONFIRMATION", text: "Six students signed the experiment log at 12:07." }
     ],
     hint: "Start by undoing the +5. Subtract 5 from both sides. What is 26 − 5? Then divide both sides by 3."
   },
@@ -33,11 +33,11 @@ const clues = [
     answer: 8,
     suspect: 1,
     title: "A timestamp in the stacks",
-    clue: "Shelf camera 8 shows Ms. Ivy helping a student across campus when the lunch disappeared.",
+    clue: "Shelf camera 8 holds another alibi. Match the complete description to a dossier.",
     hints: [
-      { label: "WHAT SHE WORE", text: "A green cardigan and a silver owl brooch." },
-      { label: "WHERE SHE WAS", text: "At the library return desk on the opposite side of school." },
-      { label: "WHAT PROVES IT", text: "Her card scanned twelve returned books from 12:03 to 12:11." }
+      { label: "CLOTHING", text: "The person wore glasses and a green cardigan." },
+      { label: "LOCATION", text: "They were at the library desk in the east wing." },
+      { label: "CONFIRMATION", text: "Their card scanned books from 12:03 to 12:11." }
     ],
     hint: "Undo the multiplication first: divide both sides by 4. You’ll get y − 2 = 6. What must you add to both sides?"
   },
@@ -49,11 +49,11 @@ const clues = [
     answer: 7,
     suspect: 2,
     title: "The whistle was heard",
-    clue: "Page 7 holds the track attendance sheet. Twenty witnesses place Coach Bramble outside during lunch.",
+    clue: "Page 7 holds a track attendance sheet. Decide which profile matches every detail.",
     hints: [
-      { label: "WHAT HE WORE", text: "A red tracksuit and muddy white running shoes." },
-      { label: "WHERE HE WAS", text: "On the outdoor track, timing the relay team." },
-      { label: "WHAT PROVES IT", text: "His stopwatch recorded a lap at exactly 12:07." }
+      { label: "CLOTHING", text: "The person wore white shoes and a red tracksuit." },
+      { label: "LOCATION", text: "They were outside on the running track." },
+      { label: "CONFIRMATION", text: "A stopwatch recorded their relay lap at 12:07." }
     ],
     hint: "Collect the variable terms: subtract 2n from both sides. Then add 7 to both sides. You should reach 3n = 21."
   },
@@ -65,11 +65,11 @@ const clues = [
     answer: 15,
     suspect: 3,
     title: "The office call",
-    clue: "Extension 15 has a recorded call lasting through 12:07 PM. Principal Vale never left the office.",
+    clue: "Extension 15 recorded a call during the theft. Use all three details to identify the alibi.",
     hints: [
-      { label: "WHAT SHE WORE", text: "A navy suit with a gold school pin." },
-      { label: "WHERE SHE WAS", text: "In the principal’s office behind a locked glass door." },
-      { label: "WHAT PROVES IT", text: "A parent call lasted from 11:58 until 12:14." }
+      { label: "CLOTHING", text: "The person wore a navy jacket and a school badge." },
+      { label: "LOCATION", text: "They stayed in the main office behind a glass door." },
+      { label: "CONFIRMATION", text: "A recorded parent call lasted from 11:58 to 12:14." }
     ],
     hint: "Remove the +4 by subtracting 4 from both sides. Once m ÷ 3 = 5, multiply both sides by 3."
   },
@@ -81,11 +81,11 @@ const clues = [
     answer: 4,
     suspect: 4,
     title: "A delivery across town",
-    clue: "Receipt 4 shows Chef Rowan accepting a food delivery at the loading dock, far from the staff room.",
+    clue: "Receipt 4 records a delivery at the exact time of the theft. Which dossier fits it?",
     hints: [
-      { label: "WHAT HE WORE", text: "A striped apron, blue gloves, and a tall paper hat." },
-      { label: "WHERE HE WAS", text: "At the loading dock behind the cafeteria." },
-      { label: "WHAT PROVES IT", text: "The driver’s receipt and dock camera are both stamped 12:07." }
+      { label: "CLOTHING", text: "The person wore white shoes and a striped apron." },
+      { label: "LOCATION", text: "They were at the west-hall loading dock." },
+      { label: "CONFIRMATION", text: "A driver’s receipt and dock camera both show 12:07." }
     ],
     hint: "Divide both sides by 2 first. Then 3p + 1 = 13. Subtract 1, and divide the result by 3."
   },
@@ -97,11 +97,11 @@ const clues = [
     answer: 12,
     suspect: 5,
     title: "The photograph doesn’t blink",
-    clue: "Photo 12 is timestamped 12:07 PM. Juno Bell was interviewing the soccer team. Only one suspect remains.",
+    clue: "Photo 12 contains the final alibi. Compare it carefully before making the last exclusion.",
     hints: [
-      { label: "WHAT SHE WORE", text: "A yellow raincoat with a press badge on the pocket." },
-      { label: "WHERE SHE WAS", text: "On the soccer field recording a team interview." },
-      { label: "WHAT PROVES IT", text: "Photo 12 shows Juno with the entire team at 12:07." }
+      { label: "CLOTHING", text: "The person wore a yellow jacket and a press badge." },
+      { label: "LOCATION", text: "They were outdoors on the soccer field." },
+      { label: "CONFIRMATION", text: "A team photograph includes them at exactly 12:07." }
     ],
     hint: "Subtract 2q from both sides, leaving 7 = q − 5. What should you add to both sides to isolate q?"
   }
@@ -110,6 +110,7 @@ const clues = [
 let current = 0;
 let cleared = new Set();
 let attempts = 0;
+let selectedSuspect = null;
 
 const $ = (selector) => document.querySelector(selector);
 const grid = $("#suspect-grid");
@@ -120,19 +121,21 @@ const reveal = $("#clue-reveal");
 
 function renderSuspects() {
   grid.innerHTML = suspects.map((suspect, index) => `
-    <article class="suspect ${cleared.has(index) ? "cleared" : ""}" data-suspect="${index}">
+    <button type="button" class="suspect ${cleared.has(index) ? "cleared" : ""} ${selectedSuspect === index ? "selected" : ""}" data-suspect="${index}" ${cleared.has(index) ? "disabled" : ""}>
       <div class="portrait">${suspect.initials}</div>
       <strong>${suspect.name}</strong>
       <small>${suspect.role}</small>
-      <small class="outfit">${suspect.outfit}</small>
+      <ul class="traits">${suspect.traits.map((trait) => `<li>${trait}</li>`).join("")}</ul>
       <span class="status">CLEARED</span>
-    </article>
+    </button>
   `).join("");
 }
 
 function renderClue() {
   const clue = clues[current];
   attempts = 0;
+  selectedSuspect = null;
+  renderSuspects();
   $("#progress-label").textContent = `CLUE ${current + 1} OF ${clues.length}`;
   $("#progress-bar").style.width = `${((current + 1) / clues.length) * 100}%`;
   $("#location").textContent = clue.location;
@@ -151,6 +154,9 @@ function renderClue() {
   reveal.hidden = true;
   $("#excluded").hidden = true;
   $("#next-btn").hidden = true;
+  $("#selected-suspect").textContent = "NO SUSPECT SELECTED";
+  $("#exclude-btn").disabled = true;
+  $("#decision-feedback").textContent = "";
   answer.focus();
 }
 
@@ -166,7 +172,6 @@ function correctAnswer() {
   $("#hint-evidence").innerHTML = clue.hints.map((hint) => `
     <article class="mini-clue"><span>${hint.label}</span><p>${hint.text}</p></article>
   `).join("");
-  $("#exclude-btn").textContent = `EXCLUDE ${suspects[clue.suspect].name.toUpperCase()}`;
   $("#excluded").textContent = `SUSPECT EXCLUDED: ${suspects[clue.suspect].name.toUpperCase()}`;
   $("#next-btn").innerHTML = current === clues.length - 1 ? "IDENTIFY THE CULPRIT <span>→</span>" : "FOLLOW THE NEXT LEAD <span>→</span>";
   reveal.hidden = false;
@@ -191,9 +196,25 @@ $("#answer-form").addEventListener("submit", (event) => {
   $("#work-steps").focus();
 });
 
+grid.addEventListener("click", (event) => {
+  const card = event.target.closest(".suspect");
+  if (!card || reveal.hidden || cleared.has(Number(card.dataset.suspect))) return;
+  selectedSuspect = Number(card.dataset.suspect);
+  renderSuspects();
+  $("#selected-suspect").textContent = `SELECTED: ${suspects[selectedSuspect].name.toUpperCase()}`;
+  $("#exclude-btn").disabled = false;
+  $("#decision-feedback").textContent = "";
+});
+
 $("#exclude-btn").addEventListener("click", () => {
   const clue = clues[current];
-  cleared.add(clue.suspect);
+  if (selectedSuspect === null) return;
+  if (selectedSuspect !== clue.suspect) {
+    $("#decision-feedback").textContent = "That profile does not match all three details. Compare the clothing and location again.";
+    return;
+  }
+  cleared.add(selectedSuspect);
+  selectedSuspect = null;
   renderSuspects();
   $("#decision-box").hidden = true;
   $("#excluded").hidden = false;

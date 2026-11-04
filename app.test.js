@@ -10,6 +10,7 @@ test("case contains six sequential equations and seven suspects", () => {
   assert.equal(suspectCount, 7);
   assert.equal((source.match(/hints: \[/g) || []).length, 6);
   assert.equal((source.match(/label: "/g) || []).length, 18);
+  assert.equal((source.match(/traits: \[/g) || []).length, 7);
 });
 
 test("every required interactive region is present", () => {

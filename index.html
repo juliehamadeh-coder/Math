@@ -77,8 +77,10 @@
               <div class="hint-evidence" id="hint-evidence"></div>
               <div class="decision-box" id="decision-box">
                 <span>YOUR DEDUCTION</span>
-                <p>Do these details prove this suspect could not have taken the lunch?</p>
-                <button class="exclude-btn" id="exclude-btn" type="button"></button>
+                <p>Select the suspect whose full profile matches all three clues, then exclude them.</p>
+                <div class="selected-suspect" id="selected-suspect">NO SUSPECT SELECTED</div>
+                <button class="exclude-btn" id="exclude-btn" type="button" disabled>EXCLUDE SELECTED SUSPECT</button>
+                <div class="decision-feedback" id="decision-feedback" aria-live="polite"></div>
               </div>
               <div class="excluded" id="excluded" hidden></div>
               <button class="primary-btn next-btn" id="next-btn" hidden>FOLLOW THE NEXT LEAD <span>→</span></button>
